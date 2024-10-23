@@ -1,0 +1,48 @@
+#include<iostream>
+#include<map>
+#include<vector>
+
+using namespace std;
+
+int main(){
+	int n;
+	cout<<"so luong nam sinh: "; cin>>n; 
+	vector<int> years(n);
+	for(int i=0; i<n; ++i){
+		cin >> years[i];
+	}
+	//dem so luong nguoi sinh trong moi nam
+	map<int, int> yearCount;  //khai bao map voi cac key-value kieu du lieu int va bien yearCount la value, year la key
+	for(int year : years){
+		yearCount[year]++;    //cac key-year se duyet cac phan tu trong map, neu cung so nam thi gia tri yearCount[year] tang len 1 gia tri
+	}
+	//tim nam co cung so luong nguoi sinh
+	cout<<"cac nam co cung so luong nguoi sinh: ";
+	int k=-2; //dam bao so luong nguoi sinh trong cac nam khong la so am
+	for(auto it : yearCount){ //duyet cac key-value trong map yearCount
+		if(it.second != k){ 
+			k=it.second;
+			cout<<endl;
+		}
+		cout<<it.first<<" "; //in ra nam co cung so luong nguoi sinh
+	}
+	//Tim cac nam co so luong nguoi sinh lon nhat va nho nhat 
+	int maxCount=0, minCount= INT_MAX, maxYear, minYear;
+	for(auto it : yearCount){
+		if(it.second > maxCount){
+			maxCount = it.second;
+			maxYear = it.first;
+		}
+		if(it.second < minCount){
+			minCount = it.second;
+			minYear = it.first;
+		}
+	}
+	cout<<endl<<"Nam sinh co so luong nguoi lon nhat: "<<maxYear;
+	cout<<endl<<"Nam sinh co so luong nguoi nho nhat "<<minYear;
+	
+	return 0;
+	
+	
+	
+}
